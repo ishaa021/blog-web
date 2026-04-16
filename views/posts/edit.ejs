@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+
+  <div class="page-hero">
+    <span class="eyebrow">Polish your draft</span>
+    <h1>Edit Post</h1>
+    <p class="subtitle">Refine your writing, tighten the message, and publish a sharper version.</p>
+  </div>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error">
+      ⚠️ <%= error %>
+    </div>
+  <% } %>
+
+  <div class="form-container">
+    <form action="/posts/<%= post.id %>/update" method="POST">
+
+      <div class="form-group">
+        <label for="title">Blog Title</label>
+        <input 
+          type="text" 
+          id="title"
+          name="title" 
+          value="<%= post.title %>"
+          maxlength="120"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="content">Blog Content</label>
+        <textarea 
+          id="content"
+          name="content" 
+          rows="12"
+          required
+        ><%= post.content %></textarea>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">
+          💾 Save Changes
+        </button>
+        <a href="/posts/<%= post.id %>" class="btn btn-secondary">Cancel</a>
+        <span class="form-hint">Post ID: #<%= post.id %></span>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>

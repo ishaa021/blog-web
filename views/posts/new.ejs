@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+
+  <div class="page-hero">
+    <span class="eyebrow">Compose something new</span>
+    <h1>Write a New Blog</h1>
+    <p class="subtitle">Share a story, a lesson, or a small idea that deserves a permanent home.</p>
+  </div>
+
+  <% if (typeof error !== 'undefined' && error) { %>
+    <div class="alert alert-error">
+      ⚠️ <%= error %>
+    </div>
+  <% } %>
+
+  <div class="form-container">
+    <form action="/posts" method="POST">
+      
+      <div class="form-group">
+        <label for="title">Blog Title</label>
+        <input 
+          type="text" 
+          id="title"
+          name="title" 
+          placeholder="Write a catchy title..."
+          value="<%= typeof formData !== 'undefined' ? formData.title || '' : '' %>"
+          maxlength="120"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="content">Blog Content</label>
+        <textarea 
+          id="content"
+          name="content" 
+          placeholder="Write your story, thoughts, or knowledge here..."
+          rows="12"
+          required
+        ><%= typeof formData !== 'undefined' ? formData.content || '' : '' %></textarea>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">
+          🚀 Publish
+        </button>
+        <a href="/" class="btn btn-secondary">Cancel</a>
+        <span class="form-hint">* Both fields are required</span>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>
